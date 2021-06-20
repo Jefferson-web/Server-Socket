@@ -1,8 +1,8 @@
-import Server from './classes/server';
+import HttpServer from './classes/server';
 import { SERVER_PORT } from './config/config';
 
-const server = new Server();
+const server = HttpServer.instance;
 
 server.start(() => {
-    console.log(`Server listening on port ${SERVER_PORT}`);
+    console.log(`Server listening on port ${ SERVER_PORT }`);
 });
