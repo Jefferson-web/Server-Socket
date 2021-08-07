@@ -1,9 +1,9 @@
 import express, { Application } from 'express';
-import { SERVER_PORT } from '../config/config';
+import { SERVER_PORT } from './config';
 import cors from 'cors';
 import http from 'http';
 import { Socket, Server as socketIO } from 'socket.io';
-import socketEvents from '../socket.events';
+import socketEvents from './socket.events';
 
 export default class Server {
 
@@ -16,7 +16,7 @@ export default class Server {
         this.app = express();
         this.config();
         this.httpServer = http.createServer(this.app);
-        this.io = new socketIO(this.httpServer, { cors: { origin: 'http://localhost:4200' } });
+        this.io = new socketIO(this.httpServer, { cors: { origin: '*' } });
         this.listenEvents();
     }
 
@@ -30,7 +30,7 @@ export default class Server {
     config() {
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
-        this.app.use(cors({ origin: 'http://localhost:4200' }));
+        this.app.use(cors());
     }
 
     listenEvents() {

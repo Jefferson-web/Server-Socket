@@ -1,5 +1,5 @@
-import Server from './classes/server';
-import { SERVER_PORT } from './config/config';
+import Server from './server';
+import { SERVER_PORT } from './config';
 
 const server = Server.instance;
 
